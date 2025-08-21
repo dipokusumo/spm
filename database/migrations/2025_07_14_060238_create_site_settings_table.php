@@ -14,12 +14,12 @@ return new class extends Migration {
             $table->id();
 
             // Footer
-            $table->text('footer_description')->nullable();
-            $table->json('footer_socials')->nullable(); // [{ label, url, icon }]
+            $table->json('footer_socials')->nullable();
+            $table->text('footer_links')->nullable();
 
             // Navbar
-            $table->string('navbar_logo')->nullable(); // path to logo file
-            $table->json('navbar_links')->nullable();  // [{ label, url }]
+            $table->string('navbar_logo')->nullable();
+            $table->json('navbar_links')->nullable();
 
             $table->timestamps();
         });

@@ -34,8 +34,9 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 class PageResource extends Resource
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-
     protected static ?string $recordTitleAttribute = 'title';
+
+    public static ?string $navigationGroup = 'Pages';
 
     public static function getModel(): string
     {

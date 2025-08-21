@@ -47,5 +47,5 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: public/build/
-          server-dir: repositories/arteegroup-revamp/public/build/
+          server-dir: repositories/spm/public/build/
           dangerous-clean-slate: true

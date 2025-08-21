@@ -3,26 +3,24 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Builder;
 use Illuminate\Support\Facades\Storage;
 use App\Filament\Fabricator\PageBlocks\Hero;
-use App\Filament\Fabricator\PageBlocks\ImageMarquee;
-use App\Filament\Fabricator\PageBlocks\SectionParagaph;
+use App\Filament\Fabricator\PageBlocks\BusinessModel;
+use App\Filament\Fabricator\PageBlocks\TargetMarket;
 use App\Models\Homepage as ModelsHomepage;
-use Filament\Forms\Components\Grid;
 use Filament\Notifications\Notification;
-
-
-
 
 class Homepage extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
     protected static string $view = 'filament.pages.homepage';
+    public static ?string $navigationGroup = 'Pages';
 
     public array $data = [];
     public array $blocks = [];
@@ -38,36 +36,16 @@ class Homepage extends Page
         $this->blocks = $homepage->blocks ?? [];
         $this->seo_title = $homepage->seo_title ?? '';
         $this->seo_description = $homepage->seo_description ?? '';
-        $this->seo_image = $homepage->seo_image ? Storage::url($homepage->
-            seo_image) : null;
+        $this->seo_image = $homepage->seo_image ? Storage::url($homepage->seo_image) : null;
 
-        $this->form->fill([
-        ]);
-
+        $this->form->fill([]);
     }
 
     protected function getFormSchema(): array
     {
         return [
             Grid::make()
-                ->columns([
-                    'default' => 3, // total columns
-                ])
                 ->schema([
-                    Grid::make()->schema([
-                        Section::make('Page Blocks')
-                            ->schema([
-                                Builder::make('blocks')
-                                    ->blocks([
-                                        Hero::getBlockSchema(),
-                                        SectionParagaph::getBlockSchema(),
-                                        ImageMarquee::getBlockSchema(),
-                                        // Add more blocks...
-                                    ]),
-                            ]),
-                    ])->columnSpan(2),
-
-                    // ✅ Sidebar (1/3 width)
                     Grid::make()->schema([
                         Section::make('SEO Settings')
                             ->schema([
@@ -82,7 +60,18 @@ class Homepage extends Page
                                     ->image()
                                     ->label('OpenGraph Image'),
                             ]),
-                    ])->columnSpan(1),
+                    ]),
+                    Grid::make()->schema([
+                        Section::make('Page Blocks')
+                            ->schema([
+                                Builder::make('blocks')
+                                    ->blocks([
+                                        Hero::getBlockSchema(),
+                                        BusinessModel::getBlockSchema(),
+                                        TargetMarket::getBlockSchema(),
+                                    ]),
+                            ]),
+                    ]),
                 ]),
         ];
     }
@@ -101,7 +90,6 @@ class Homepage extends Page
             return $block;
         })->toArray();
 
-
         ModelsHomepage::updateOrCreate(
             ['id' => 1],
             [
@@ -119,5 +107,4 @@ class Homepage extends Page
 
         $this->dispatch('refresh');
     }
-
 }

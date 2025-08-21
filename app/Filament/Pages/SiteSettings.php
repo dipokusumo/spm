@@ -12,7 +12,6 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 
@@ -24,7 +23,7 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
     protected static ?string $title = 'Site Settings';
     protected static string $view = 'filament.pages.site-settings';
     protected static ?string $navigationGroup = 'Settings';
-    protected static ?int $navigationSort = 100; // appears after Division
+    protected static ?int $navigationSort = 100;
 
 
     public ?array $data = [];
@@ -80,8 +79,7 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
                         ])
                         ->default([])
                         ->reorderable()
-                        ->columns(3)
-                        ->collapsible(),
+                        ->columns(3),
 
                     // Dropdown/sub links
                     Repeater::make('navbar_dropdowns')
@@ -112,8 +110,6 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
 
             Section::make('Footer Settings')
                 ->schema([
-                    Textarea::make('footer_description')->rows(3),
-
                     Repeater::make('footer_socials')
                         ->label('Social Links')
                         ->schema([
@@ -123,6 +119,15 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
                         ])
                         ->default([])
                         ->columns(3),
+
+                    Repeater::make('footer_links')
+                        ->label('Footer Links')
+                        ->schema([
+                            TextInput::make('label')->required(),
+                            TextInput::make('url')->url()->required(),
+                        ])
+                        ->default([])
+                        ->columns(2),
                 ]),
         ];
     }

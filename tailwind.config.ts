@@ -20,7 +20,7 @@ const config: Config = {
         typography,
         // rtl,  // uncomment if you install and want automatic RTL support
     ],
-    darkMode: 'class',
+    lightMode: 'class',
 };
 
 export default config;

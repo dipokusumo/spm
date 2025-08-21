@@ -11,14 +11,15 @@ class SiteSettings extends Model implements HasMedia
 {
     use InteractsWithMedia;
     protected $fillable = [
-        'footer_description',
         'footer_socials',
+        'footer_links',
         'navbar_logo',
         'navbar_links',
     ];
 
     protected $casts = [
         'footer_socials' => 'array',
+        'footer_links' => 'array',
         'navbar_links' => 'array',
     ];
 

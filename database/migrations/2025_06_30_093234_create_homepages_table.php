@@ -15,8 +15,6 @@ return new class extends Migration {
             $table->string('seo_title')->nullable();
             $table->text('seo_description')->nullable();
             $table->string('seo_image')->nullable();
-            $table->string('hero_title')->nullable();
-            $table->text('hero_subtitle')->nullable();
             $table->json('blocks')->nullable();
             $table->timestamps();
         });

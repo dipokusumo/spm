@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Inertia::share('siteSettings', function () {
-            $settings = \App\Models\SiteSettings::first();
+            $settings = SiteSettings::first();
 
             return [
                 ...($settings?->toArray() ?? []),
