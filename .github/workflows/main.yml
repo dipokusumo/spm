@@ -1,0 +1,51 @@
+name: Build and Deploy Vite to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🧰 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, bcmath, openssl, pdo, tokenizer, xml
+          tools: composer
+
+      - name: 🟢 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 📦 Install PHP dependencies
+        run: composer install --no-dev --prefer-dist --no-interaction
+
+      - name: 📦 Install Node dependencies
+        run: pnpm install
+
+      - name: ⚒️ Build Vite project
+        run: pnpm run build
+
+      - name: 🚀 Upload dist to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: public/build/
+          server-dir: repositories/arteegroup-revamp/public/build/
+          dangerous-clean-slate: true
