@@ -9,6 +9,8 @@ import ImageMarqueeBlock from './imagemarquee-block';
 import SeparatorBlock from './separator-block';
 import WysiwygBlock from './wyswyg-block';
 import CollageImageBlock from './imagecollage-block';
+import BusinessModelBlock from './businessmodel-block';
+import TargetModelBlock from './targetmodel-block';
 
 // Add all other blocks here...
 
@@ -22,6 +24,8 @@ const components: Record<string, React.ComponentType<any>> = {
     'image-marquee': ImageMarqueeBlock,
     separator: SeparatorBlock,
     wysiwyg: WysiwygBlock,
+    'business-model': BusinessModelBlock,
+    'target-market': TargetModelBlock
 
     // Add more as needed...
 };

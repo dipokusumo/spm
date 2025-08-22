@@ -45,7 +45,7 @@ export const NavDropdown = ({ active, items, textColor }: NavDropdownProps) => {
                             href={item.url || '#'}
                             className={`whitespace-nowrap hover:underline ${isLightText ? 'text-white' : 'text-black'} `}
                         >
-                            {item.label}
+                            {item.label.toUpperCase()}
                         </a>
                     ))}
                 </motion.div>

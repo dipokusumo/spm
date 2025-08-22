@@ -1,8 +1,6 @@
 'use client';
 
-import { isColorLight } from '@/lib/utils';
 import { useState } from 'react';
-import { Button } from '../ui/button';
 import type { NavItemsProps } from '../ui/resizable-navbar';
 import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, NavbarLogo, NavBody, NavItems } from '../ui/resizable-navbar';
 
@@ -10,10 +8,9 @@ type NavbarProps = {
     logo?: string;
     item?: NavItemsProps['items'];
     backgroundColor?: string;
-    custom?: { [key: string]: string }; // Custom colors or styles
 };
 
-export default function Navigation({ logo, item, custom }: NavbarProps) {
+export default function Navigation({ logo, item }: NavbarProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // Define the navigation items
@@ -54,17 +51,7 @@ export default function Navigation({ logo, item, custom }: NavbarProps) {
     // State to track which mobile dropdowns are open
     const [openDropdowns, setOpenDropdowns] = useState<{ [key: number]: boolean }>({});
 
-    const textColor = custom?.navbar || '';
-    const isLightText = isColorLight(textColor);
-    const isHomepage = 'border-brand text-brand';
-
-    const defaultText = !custom?.navbar ? isHomepage : `border-[${textColor}] text-[${textColor}]`;
-
-    const hoverBg = !custom?.navbar
-        ? 'hover:border-none hover:bg-white'
-        : isLightText
-          ? 'hover:border-none hover:bg-white'
-          : 'hover:border-none hover:bg-black';
+    const textColor = '#1A5DA4';
 
     return (
         <Navbar className="navbar">
@@ -72,34 +59,6 @@ export default function Navigation({ logo, item, custom }: NavbarProps) {
             <NavBody textColor={textColor}>
                 <NavbarLogo logo={logo} />
                 <NavItems items={navItems} textColor={textColor} />
-                <div className="z-20 hidden md:block">
-                    <Button
-                        variant="outline"
-                        className={`rounded-full bg-transparent transition ${defaultText} ${hoverBg}`}
-                        style={!custom?.navbar ? {} : { borderColor: textColor }}
-                        onMouseEnter={(e) => {
-                            const link = e.currentTarget.querySelector('a') as HTMLElement;
-                            link.style.color = !custom?.navbar ? 'black' : isLightText ? 'black' : 'white';
-                        }}
-                        onMouseLeave={(e) => {
-                            const link = e.currentTarget.querySelector('a') as HTMLElement;
-                            link.style.color = textColor;
-                        }}
-                    >
-                        <span
-                            role="button"
-                            tabIndex={0}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const section = document.getElementById('get-in-touch');
-                                section?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                            }}
-                            style={!custom?.navbar ? {} : { color: textColor }}
-                        >
-                            Get in Touch
-                        </span>
-                    </Button>
-                </div>
             </NavBody>
             {/* Mobile Navigation */}
             <MobileNav>
@@ -115,7 +74,7 @@ export default function Navigation({ logo, item, custom }: NavbarProps) {
                         return (
                             <div key={idx} className="w-full">
                                 <div
-                                    className="flex w-full items-center justify-between px-2 py-2 text-neutral-800 dark:text-neutral-200"
+                                    className="flex w-full items-center justify-between px-2 py-2 text-neutral-200"
                                     onClick={() => {
                                         if (hasChildren) {
                                             setOpenDropdowns((prev) => ({
@@ -127,9 +86,9 @@ export default function Navigation({ logo, item, custom }: NavbarProps) {
                                         }
                                     }}
                                 >
-                                    <a href={item.link || '#'}>{item.name}</a>
+                                    <a href={item.link || '#'}>{item.name.toUpperCase()}</a>
                                     {hasChildren && (
-                                        <button className="text-brand text-sm" type="button">
+                                        <button className="text-[#1A5DA4] text-sm" type="button">
                                             {isOpen ? '-' : '+'}
                                         </button>
                                     )}
@@ -142,10 +101,10 @@ export default function Navigation({ logo, item, custom }: NavbarProps) {
                                             <a
                                                 key={childIdx}
                                                 href={child.url || '#'}
-                                                className="px-2 py-1 text-sm text-neutral-600 dark:text-neutral-300"
+                                                className="px-2 py-1 text-sm text-neutral-300"
                                                 onClick={() => setIsMobileMenuOpen(false)}
                                             >
-                                                {child.label}
+                                                {child.label.toUpperCase()}
                                             </a>
                                         ))}
                                     </div>

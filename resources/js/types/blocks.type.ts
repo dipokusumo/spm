@@ -13,29 +13,6 @@ export interface IHeroBlock {
     };
 }
 
-export interface IDivision {
-    data?: {
-        title?: string;
-        slug?: string;
-        name?: string;
-        color?: string;
-    };
-}
-
-export interface HeroDivisionProps {
-    data?: IHeroBlock['data'] & IDivision['data'];
-    color?: string;
-    name?: string;
-    slug?: string;
-    blocks?: {
-        type?: string;
-        data?: {
-            background_url?: string;
-        };
-    }[];
-    custom?: { [key: string]: string };
-}
-
 export interface ISectionParagraphBlock {
     data?: {
         content_type?: 'title' | 'image';
@@ -65,25 +42,23 @@ export interface IImageMarqueeBlock {
 
 export interface ICollageImageBlock {
     data?: {
-        images: { image: string; }[];
+        images: { image: string }[];
     };
 }
 
-export interface IWork {
-    id: number;
-    division_id?: number;
-    division?: {
-        slug?: string;
+export interface IBusinessModelBlock {
+    data?: {
+        title?: string;
+        upper_paragraph?: string;
+        lower_paragraph?: string;
+        items?: { subtitle?: string; description?: string }[];
+        background_url?: string;
     };
-    name?: string;
-    campaign?: string;
-    campaign_name?: string;
-    campaign_description?: string;
-    is_highlighted?: boolean;
-    campaign_image?: string;
-    title?: string;
-    slug?: string;
-    seo_title?: string;
-    seo_description?: string;
-    seo_image?: string;
+}
+
+export interface ITargetModelBlock {
+    data?: {
+        title?: string;
+        items?: { subtitle?: string; icon: string; description?: string }[];
+    };
 }

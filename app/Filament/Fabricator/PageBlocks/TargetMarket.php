@@ -3,6 +3,7 @@
 namespace App\Filament\Fabricator\PageBlocks;
 
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -22,6 +23,12 @@ class TargetMarket extends PageBlock
                 Repeater::make('items')
                     ->label('Target Industries & Customers')
                     ->schema([
+                        FileUpload::make('icon')
+                            ->label('Icon')
+                            ->image()
+                            ->directory('uploads/icons')
+                            ->visibility('public'),
+
                         TextInput::make('subtitle')
                             ->label('Industry / Customer')
                             ->required(),

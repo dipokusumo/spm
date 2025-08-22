@@ -115,7 +115,7 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
                         ->schema([
                             TextInput::make('label')->required(),
                             TextInput::make('url')->url()->required(),
-                            TextInput::make('icon')->required()->placeholder('lucide-instagram'),
+                            TextInput::make('icon')->required()->placeholder('instagram'),
                         ])
                         ->default([])
                         ->columns(3),

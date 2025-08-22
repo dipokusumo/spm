@@ -2,81 +2,38 @@
 
 import { getRelativePath } from '@/lib/get-relative-path';
 import { type IHeroBlock } from '@/types/blocks.type';
-import { easeInOut, motion } from 'framer-motion';
-import React, { useEffect, useMemo, useState } from 'react';
-import { TextGenerateEffect } from '../ui/generate-text';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const isVideo = (url: string | undefined): boolean => {
     if (!url) return false;
     return /\.(mp4|webm|ogg)$/i.test(url);
 };
 
-// Shared transition settings
-const sharedTransition = {
-    duration: 1,
-    ease: easeInOut,
-};
-
-// Motion animation states
-const animations = {
-    containerInitial: {
-        top: '50%',
-        left: '50%',
-        x: '-50%',
-        y: '-50%',
-        bottom: 'auto',
-        opacity: 1,
-        scale: 1.1,
-        transformOrigin: 'center center',
-    },
-    containerFinal: {
-        top: 'auto',
-        left: '0%',
-        x: '0%',
-        y: '0%',
-        bottom: '2.5rem',
-        opacity: 1,
-        scale: 1,
-        transformOrigin: 'left bottom',
-    },
-    h1Initial: {
-        textAlign: 'center' as const,
-        fontSize: '3rem',
-        lineHeight: '1.1',
-        maxWidth: '100%',
-        fontWeight: 'bold' as const,
-    },
-    h1Final: {
-        textAlign: 'left' as const,
-        fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
-        lineHeight: '2.5rem',
-        maxWidth: '28rem',
-        fontWeight: 'normal' as const,
-    },
-};
-
 const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
-    const { title, subtitle, cta_text, cta_url, background_url } = data ?? {};
+    const { title, subtitle, background_url } = data ?? {};
 
-    const [startTransition, setStartTransition] = useState(false);
+    const background = background_url ?? '';
 
-    // Memoized fallback content
-    const fallback = useMemo(
-        () => ({
-            title: 'Create impact through meaningful and loud ideas, with a solid result',
-            cta_text: 'Explore our work',
-            cta_url: 'http://127.0.0.1:8000/',
-            background: '/moon.gif',
-        }),
-        [],
-    );
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // Lock body scroll saat modal dibuka
     useEffect(() => {
-        const timeout = setTimeout(() => setStartTransition(true), 3000); // Text stays centered for 5 seconds
-        return () => clearTimeout(timeout);
-    }, []);
+        const original = document.body.style.overflow;
+        document.body.style.overflow = isModalOpen ? 'hidden' : original || '';
+        return () => {
+            document.body.style.overflow = original || '';
+        };
+    }, [isModalOpen]);
 
-    const background = background_url ?? fallback.background;
+    const closeModal = useCallback(() => setIsModalOpen(false), []);
+
+    // ESC untuk close
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeModal();
+        if (isModalOpen) window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [isModalOpen, closeModal]);
 
     return (
         <section className="relative flex h-screen items-center justify-center overflow-hidden">
@@ -90,56 +47,107 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
                     className="absolute inset-0 z-0 h-full w-full object-cover"
                 />
             ) : (
-                <img src={getRelativePath(background)} alt="Background" className="absolute inset-0 z-0 h-full w-full object-cover" />
+                <img
+                    src={getRelativePath(background)}
+                    alt="Background"
+                    className="absolute inset-0 z-0 h-full w-full object-cover"
+                    draggable="false"
+                />
             )}
 
-            {/* Black overlay fade */}
-            <motion.div
-                className="z-5 absolute inset-0 bg-black"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 0 }}
-                transition={{ ...sharedTransition, delay: 5 }}
-            />
+            {/* Overlay Gradient (biar teks lebih kebaca) */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
-            {/* Main text container */}
-            <motion.div
-                className="absolute z-10 w-full will-change-transform"
-                initial={animations.containerInitial}
-                animate={startTransition ? animations.containerFinal : {}}
-                transition={sharedTransition}
-            >
-                <div className="relative mx-auto max-w-7xl px-8 md:px-20">
+            {/* Content */}
+            <div className="relative z-10 flex h-full w-full flex-col justify-end px-4 pb-10 sm:px-6 md:px-20 md:pb-12">
+                <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-2 md:gap-0">
+                    {/* Left: Title */}
                     <motion.h1
-                        className="mb-4 text-white drop-shadow-md"
-                        initial={animations.h1Initial}
-                        animate={startTransition ? animations.h1Final : {}}
-                        transition={{ delay: 0, duration: 1 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        className="md:cols-span-1 text-xl font-bold leading-snug text-white drop-shadow-lg md:text-3xl"
                     >
-                        <TextGenerateEffect words={title ?? fallback.title} className="text-3xl md:text-4xl lg:text-5xl" filter duration={0.8} />
+                        {title}
                     </motion.h1>
 
-                    {subtitle && (
-                        <motion.p
-                            className="mb-6 text-lg text-white drop-shadow-sm"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 5.2, duration: 0.8 }}
-                        >
-                            {subtitle}
-                        </motion.p>
-                    )}
+                    {/* Right: Paragraph + Discover */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 1 }}
+                        className="flex flex-col items-start justify-center text-sm leading-relaxed text-white"
+                    >
+                        {subtitle && (
+                            <div className="relative w-full">
+                                {/* MOBILE: truncate + fade; DESKTOP: full */}
+                                <div
+                                    className={`line-clamp-3 overflow-hidden whitespace-pre-line pr-1 leading-relaxed md:line-clamp-none md:max-h-none md:overflow-visible`}
+                                    dangerouslySetInnerHTML={{ __html: subtitle }}
+                                />
 
-                    <motion.a
-                        href={cta_url ?? fallback.cta_url}
-                        className="bg-brand inline-block rounded-full px-6 py-3 text-white transition hover:bg-white hover:text-black"
+                                {/* CTA Learn More (mobile only) */}
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="relative z-10 mt-3 inline-flex items-center gap-2 rounded-lg bg-white/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm hover:bg-white/45 md:hidden"
+                                    aria-haspopup="dialog"
+                                >
+                                    Learn more
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Discover + Arrow inline */}
+                        <div className="mt-4 flex w-full items-center justify-between border-b-2 border-white pb-1 text-lg font-bold">
+                            <a className="text-white">Discover</a>
+
+                            {/* Scroll Indicator (arrow aligned with line) */}
+                            <div className="text-white">↓</div>
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* MODAL: tampilkan subtitle full di mobile */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        key="overlay"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 5, duration: 0.8 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm md:hidden"
+                        onClick={closeModal}
+                        aria-modal="true"
+                        role="dialog"
                     >
-                        {cta_text ?? fallback.cta_text}
-                    </motion.a>
-                </div>
-            </motion.div>
+                        <motion.div
+                            key="sheet"
+                            initial={{ y: 40, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 40, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeOut' }}
+                            className="absolute inset-x-0 bottom-0 mx-auto mb-4 w-[92%] max-w-md rounded-2xl border border-white/10 bg-neutral-900/90 p-4 text-white shadow-2xl"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-sm font-semibold">About this section</h3>
+                                <button onClick={closeModal} aria-label="Close" className="rounded-xl bg-white px-4 py-2 text-xs font-semibold text-black hover:bg-white/90">
+                                    Close
+                                </button>
+                            </div>
+                            <div className="mt-3 h-px w-full bg-white/10" />
+                            <div className="mt-3 max-h-[60vh] overflow-y-auto pr-1">
+                                <div
+                                    className="whitespace-pre-line text-[13.5px] leading-relaxed"
+                                    dangerouslySetInnerHTML={{ __html: subtitle ?? '' }}
+                                />
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };

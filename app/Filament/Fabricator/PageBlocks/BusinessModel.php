@@ -6,6 +6,7 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Z3d0X\FilamentFabricator\PageBlocks\PageBlock;
 
 class BusinessModel extends PageBlock
@@ -26,6 +27,14 @@ class BusinessModel extends PageBlock
                 Textarea::make('lower_paragraph')
                     ->label('Lower Paragraph')
                     ->rows(3),
+                
+                FileUpload::make('background_url')
+                    ->image()
+                    ->label('Background Image')
+                    ->directory('/hero')
+                    ->visibility('public')
+                    ->openable()
+                    ->helperText('Upload image for the background.'),
 
                 Repeater::make('items')
                     ->label('Business Points')

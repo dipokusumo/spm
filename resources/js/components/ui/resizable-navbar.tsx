@@ -17,7 +17,7 @@ interface NavBodyProps {
     children: React.ReactNode;
     className?: string;
     visible?: boolean;
-    textColor?: string;
+    textColor: string;
 }
 
 export interface NavItemsProps {
@@ -28,7 +28,7 @@ export interface NavItemsProps {
         children?: { label: string; url?: string }[];
     }[];
     className?: string;
-    textColor?: string;
+    textColor: string;
     onItemClick?: () => void;
 }
 
@@ -76,10 +76,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 };
 
 export const NavBody = ({ children, className, visible, textColor }: NavBodyProps) => {
-    const isHomepage = '#FFFFFF';
-    const effectiveTextColor = textColor || isHomepage;
 
-    const isLightText = isColorLight(effectiveTextColor);
+    const isLightText = isColorLight(textColor);
 
     return (
         <motion.div
@@ -114,10 +112,7 @@ export const NavItems = ({ items, className, textColor, onItemClick }: NavItemsP
     const [hovered, setHovered] = useState<number | null>(null);
     const [active, setActive] = useState<string | null>(null);
 
-    const homepageColor = '#FFFFFF';
-
-    const effectiveTextColor = textColor || homepageColor;
-    const isLightText = isColorLight(effectiveTextColor);
+    const isLightText = isColorLight(textColor);
 
     return (
         <motion.div
@@ -126,7 +121,7 @@ export const NavItems = ({ items, className, textColor, onItemClick }: NavItemsP
                 setActive(null);
             }}
             className={cn(
-                'absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 bg-transparent text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2',
+                'absolute inset-0 hidden flex-1 flex-row items-center justify-end space-x-4 bg-transparent text-sm font-medium transition duration-200 lg:flex lg:space-x-2',
                 className,
             )}
         >
@@ -157,7 +152,7 @@ export const NavItems = ({ items, className, textColor, onItemClick }: NavItemsP
                                     section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                 }}
                                 className="relative cursor-pointer px-4 py-2"
-                                style={{ color: effectiveTextColor }}
+                                style={{ color: textColor }}
                             >
                                 {hovered === idx && (
                                     <motion.div
@@ -165,14 +160,14 @@ export const NavItems = ({ items, className, textColor, onItemClick }: NavItemsP
                                         className={`absolute inset-0 h-full w-full rounded-full ${isLightText ? 'bg-neutral-800' : 'bg-neutral-100'}`}
                                     />
                                 )}
-                                <span className="relative z-20">{item.name}</span>
+                                <span className="relative z-20">{item.name.toUpperCase()}</span>
                             </span>
                         ) : item.link ? (
                             // 🌐 Jika normal link
                             <Link
                                 onClick={onItemClick}
                                 className="relative cursor-pointer px-4 py-2"
-                                style={{ color: effectiveTextColor }}
+                                style={{ color: textColor }}
                                 href={item.link}
                             >
                                 {hovered === idx && (
@@ -181,17 +176,17 @@ export const NavItems = ({ items, className, textColor, onItemClick }: NavItemsP
                                         className={`absolute inset-0 h-full w-full rounded-full ${isLightText ? 'bg-neutral-800' : 'bg-neutral-100'}`}
                                     />
                                 )}
-                                <span className="relative z-20">{item.name}</span>
+                                <span className="relative z-20">{item.name.toUpperCase()}</span>
                             </Link>
                         ) : (
-                            <div className="relative cursor-pointer px-4 py-2" style={{ color: effectiveTextColor }}>
+                            <div className="relative cursor-pointer px-4 py-2" style={{ color: textColor }}>
                                 {hovered === idx && (
                                     <motion.div
                                         layoutId="hovered"
                                         className={`absolute inset-0 h-full w-full rounded-full ${isLightText ? 'bg-neutral-800' : 'bg-neutral-100'}`}
                                     />
                                 )}
-                                <span className="group:text relative z-20">{item.name}</span>
+                                <span className="group:text relative z-20">{item.name.toUpperCase()}</span>
                             </div>
                         )}
 
@@ -263,16 +258,16 @@ export const MobileNavMenu = ({ children, className, isOpen, onClose }: MobileNa
 
 export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
     return isOpen ? (
-        <FaAngleUp className="cursor-pointer text-black dark:text-white" onClick={onClick} />
+        <FaAngleUp className="cursor-pointer text-[#55C406]" onClick={onClick} />
     ) : (
-        <FaAngleDown className="cursor-pointer text-black dark:text-white" onClick={onClick} />
+        <FaAngleDown className="cursor-pointer text-[#55C406]" onClick={onClick} />
     );
 };
 
 export const NavbarLogo = ({ logo }: { logo?: string }) => {
     return (
         <Link href="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black">
-            <img src={logo} alt="artee" className="h-6 sm:h-7 md:h-8" />
+            <img src={logo} alt="SPM" className="h-6 sm:h-7 md:h-8" />
         </Link>
     );
 };

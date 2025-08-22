@@ -10,15 +10,20 @@ export interface NavbarLink {
     children?: NavbarChildLink[];
 }
 
+export interface FooterLink {
+    label: string;
+    url: string;
+}
+
 export interface FooterSocial {
     label: string;
     url: string;
-    icon: string;
+    icon: "facebook" | "instagram" | "youtube" | "linkedin" | "twitter" | "tiktok";
 }
 
 export interface ISiteSettings {
     id: number;
-    footer_description: string | null;
+    footer_links: FooterLink[];
     footer_socials: FooterSocial[];
     navbar_logo: string;
     navbar_links: NavbarLink[];

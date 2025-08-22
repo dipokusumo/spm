@@ -9,12 +9,9 @@ import { Toaster } from '@/components/ui/toaster';
 // import { type BreadcrumbItem } from '@/types';
 import { ISiteSettings, NavbarLink } from '@/types/global';
 import { type ReactNode } from 'react';
-import { getCustomColor } from '@/lib/get-custom-color';
 
 interface AppLayoutProps {
     children: ReactNode;
-    // breadcrumbs?: BreadcrumbItem[];
-    custom?: string; // Optional custom CSS from division
 }
 
 export const transformNavbarLinks = (links: NavbarLink[]): NavItemsProps['items'] => {
@@ -28,22 +25,24 @@ export const transformNavbarLinks = (links: NavbarLink[]): NavItemsProps['items'
     }));
 };
 
-export default ({ children, custom }: AppLayoutProps) => {
+export default ({ children }: AppLayoutProps) => {
     const { siteSettings } = usePage().props as unknown as {
         siteSettings: ISiteSettings;
     };
 
     const navbarLinks = transformNavbarLinks(siteSettings?.navbar_links) || [];
 
-    const customColor = getCustomColor(custom ?? '');
+    const footerLinks = siteSettings?.footer_links;
+
+    const footerSocials = siteSettings?.footer_socials || [];
 
     return (
         <>
             <div>
-                <Navigation logo={siteSettings?.navbar_logo} item={navbarLinks} custom={customColor} />
+                <Navigation logo={siteSettings?.navbar_logo} item={navbarLinks} />
                 {children}
-                <Separator className='bg-neutral-500 mt-8' />
-                <Footer />
+                <Separator className='bg-black' />
+                <Footer logo={siteSettings?.navbar_logo} item={footerLinks} socials={footerSocials} />
             </div>
 
             <Toaster />
