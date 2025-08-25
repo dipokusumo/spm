@@ -66,7 +66,7 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
-                        className="md:cols-span-1 text-xl font-bold leading-snug text-white drop-shadow-lg md:text-3xl"
+                        className="md:cols-span-1 font-bold leading-snug text-white drop-shadow-lg text-3xl"
                     >
                         {title}
                     </motion.h1>

@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "amidesfahani/filament-tinyeditor": "^2.1",
+        "awcodes/filament-tiptap-editor": "^3.5",
         "filament/filament": "^3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "inertiajs/inertia-laravel": "^2.0",

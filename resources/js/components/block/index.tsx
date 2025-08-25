@@ -11,6 +11,8 @@ import WysiwygBlock from './wyswyg-block';
 import CollageImageBlock from './imagecollage-block';
 import BusinessModelBlock from './businessmodel-block';
 import TargetModelBlock from './targetmodel-block';
+import CarouselBlock from './carousel-block';
+import ProductServiceBlock from './productservice-block';
 
 // Add all other blocks here...
 
@@ -24,6 +26,8 @@ const components: Record<string, React.ComponentType<any>> = {
     'image-marquee': ImageMarqueeBlock,
     separator: SeparatorBlock,
     wysiwyg: WysiwygBlock,
+    carousel: CarouselBlock,
+    'product-service': ProductServiceBlock,
     'business-model': BusinessModelBlock,
     'target-market': TargetModelBlock
 

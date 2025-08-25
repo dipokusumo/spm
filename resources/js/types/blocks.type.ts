@@ -62,3 +62,27 @@ export interface ITargetModelBlock {
         items?: { subtitle?: string; icon: string; description?: string }[];
     };
 }
+
+export interface ICarouselBlock {
+    data: {
+        carousel_title: string;
+        slides?: {
+            background_url: string;
+            slide_title?: string;
+            slide_description?: string;
+        }[];
+    };
+}
+
+export interface IProductServiceBlock {
+    data: {
+        title: string;
+        products_services: {
+            image: string;
+            name: string;
+            logo: string;
+            specs: { label: string; value: string }[];
+            services: { title: string; description: string; color: string }[];
+        }[];
+    };
+}
