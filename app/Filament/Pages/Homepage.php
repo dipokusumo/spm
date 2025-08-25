@@ -11,6 +11,8 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Builder;
 use Illuminate\Support\Facades\Storage;
 use App\Filament\Fabricator\PageBlocks\Hero;
+use App\Filament\Fabricator\PageBlocks\Carousel;
+use App\Filament\Fabricator\PageBlocks\ProductService;
 use App\Filament\Fabricator\PageBlocks\BusinessModel;
 use App\Filament\Fabricator\PageBlocks\TargetMarket;
 use App\Models\Homepage as ModelsHomepage;
@@ -67,6 +69,8 @@ class Homepage extends Page
                                 Builder::make('blocks')
                                     ->blocks([
                                         Hero::getBlockSchema(),
+                                        ProductService::getBlockSchema(),
+                                        Carousel::getBlockSchema(),
                                         BusinessModel::getBlockSchema(),
                                         TargetMarket::getBlockSchema(),
                                     ]),
