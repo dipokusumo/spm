@@ -16,7 +16,7 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
 
             {/* Items Grid */}
             <div className="flex flex-1 items-center justify-center">
-                <div className="grid w-full gap-16 md:gap-6 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
+                <div className="grid w-full gap-16 md:gap-6 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
                     {items.map((item, idx) => (
                         <div key={idx} className="grid h-full text-center [grid-template-rows:auto_3rem_auto_1fr]">
                             {/* Icon */}

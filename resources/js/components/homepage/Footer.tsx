@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ logo, item, socials }) => {
 
             {/* Email */}
             <p className="text-gray-700">
-                <span className="font-semibold">Email :</span> admin@spm-gas.com
+                <span className="font-semibold">Email:</span> admin@spm-gas.com
             </p>
 
             {/* Social Icons */}

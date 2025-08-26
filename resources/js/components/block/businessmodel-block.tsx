@@ -10,7 +10,7 @@ const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
     const background = background_url ?? '';
 
     return (
-        <section className="relative flex min-h-screen overflow-hidden" id="about-us">
+        <section className="relative flex overflow-hidden" id="about-us">
             {/* Background */}
             <img src={getRelativePath(background)} alt="Background" className="absolute inset-0 z-0 h-full w-full object-cover" draggable="false" />
 
@@ -23,8 +23,8 @@ const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
                 </div>
 
                 {/* Items Grid */}
-                <div className="flex flex-1 items-center justify-center">
-                    <div className="grid w-full place-items-stretch gap-6 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
+                <div className="flex md:py-24 items-center justify-center">
+                    <div className="grid w-full place-items-stretch gap-6 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
                         {items.map((item, idx) => (
                             <div key={idx} className="flex w-full flex-col items-center text-center">
                                 {/* Title */}
