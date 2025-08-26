@@ -74,7 +74,7 @@ export default function Navigation({ logo, item }: NavbarProps) {
                         return (
                             <div key={idx} className="w-full">
                                 <div
-                                    className="flex w-full items-center justify-between px-2 py-2 text-neutral-200"
+                                    className="flex w-full items-center justify-between px-2 py-2 text-base font-semibold text-[#1A5DA4]"
                                     onClick={() => {
                                         if (hasChildren) {
                                             setOpenDropdowns((prev) => ({

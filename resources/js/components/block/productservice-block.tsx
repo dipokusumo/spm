@@ -9,7 +9,7 @@ const ProductServiceBlock: React.FC<IProductServiceBlock> = ({ data }) => {
     const { title, products_services = [] } = data ?? {};
 
     return (
-        <section className="w-full px-6 py-12 md:px-20">
+        <section className="w-full px-6 py-12 md:px-20" id="product-service">
             {/* Judul Section */}
             {title && <h2 className="mb-8 text-3xl font-bold text-[#1A5DA4]">{title}</h2>}
 
@@ -35,7 +35,7 @@ const ProductServiceBlock: React.FC<IProductServiceBlock> = ({ data }) => {
                                     {/* Logo di pojok kanan atas */}
                                     {ps.logo && (
                                         <div className="hidden md:block absolute right-0 top-0">
-                                            <img src={getRelativePath(ps.logo)} alt={`${ps.name} logo`} className="h-14 object-contain" />
+                                            <img src={getRelativePath(ps.logo)} alt={`${ps.name} Logo`} className="h-14 object-contain" />
                                         </div>
                                     )}
 
@@ -61,7 +61,7 @@ const ProductServiceBlock: React.FC<IProductServiceBlock> = ({ data }) => {
                                             {/* Grid layanan tambahan */}
                                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                                 {ps.services.map((srv, idx) => (
-                                                    <div key={idx} className="rounded-xl p-4 text-white" style={{ backgroundColor: srv.color }}>
+                                                    <div key={idx} className="rounded-xl p-4 text-white" style={{ backgroundColor: srv.color ?? '#1A5DA4' }}>
                                                         <h4 className="font-bold">{srv.title}</h4>
                                                         <p className="mt-1 text-sm">{srv.description}</p>
                                                     </div>

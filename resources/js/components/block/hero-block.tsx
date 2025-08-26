@@ -60,7 +60,7 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
 
             {/* Content */}
             <div className="relative z-10 flex h-full w-full flex-col justify-end px-4 pb-10 sm:px-6 md:px-20 md:pb-12">
-                <div className="grid grid-cols-1 items-end gap-4 md:grid-cols-2 md:gap-0">
+                <div className="grid grid-cols-1 items-end gap-4 lg:grid-cols-2 lg:gap-0">
                     {/* Left: Title */}
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
@@ -82,14 +82,14 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
                             <div className="relative w-full">
                                 {/* MOBILE: truncate + fade; DESKTOP: full */}
                                 <div
-                                    className={`line-clamp-3 overflow-hidden whitespace-pre-line pr-1 leading-relaxed md:line-clamp-none md:max-h-none md:overflow-visible`}
+                                    className={`line-clamp-3 overflow-hidden whitespace-pre-line pr-1 leading-relaxed lg:line-clamp-none lg:max-h-none lg:overflow-visible`}
                                     dangerouslySetInnerHTML={{ __html: subtitle }}
                                 />
 
                                 {/* CTA Learn More (mobile only) */}
                                 <button
                                     onClick={() => setIsModalOpen(true)}
-                                    className="relative z-10 mt-3 inline-flex items-center gap-2 rounded-lg bg-white/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm hover:bg-white/45 md:hidden"
+                                    className="relative z-10 mt-3 inline-flex items-center gap-2 rounded-lg bg-white/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm hover:bg-white/45 lg:hidden"
                                     aria-haspopup="dialog"
                                 >
                                     Learn more
@@ -117,7 +117,7 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm md:hidden"
+                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm lg:hidden"
                         onClick={closeModal}
                         aria-modal="true"
                         role="dialog"
@@ -132,15 +132,15 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex items-center justify-between">
-                                <h3 className="text-sm font-semibold">About this section</h3>
+                                <h3 className="text-md">About this section</h3>
                                 <button onClick={closeModal} aria-label="Close" className="rounded-xl bg-white px-4 py-2 text-xs font-semibold text-black hover:bg-white/90">
                                     Close
                                 </button>
                             </div>
                             <div className="mt-3 h-px w-full bg-white/10" />
-                            <div className="mt-3 max-h-[60vh] overflow-y-auto pr-1">
+                            <div className="mt-3 max-h-[75vh] overflow-y-auto pr-1">
                                 <div
-                                    className="whitespace-pre-line text-[13.5px] leading-relaxed"
+                                    className="whitespace-pre-line md:text-[14px] leading-relaxed"
                                     dangerouslySetInnerHTML={{ __html: subtitle ?? '' }}
                                 />
                             </div>

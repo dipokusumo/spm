@@ -31,7 +31,7 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
                                     <img
                                         src={getRelativePath(slide.background_url)}
                                         alt={slide.slide_title}
-                                        className="h-full w-full object-contain" // ratio konsisten
+                                        className="h-full w-full lg:h-[500px] lg:w-auto" // ratio konsisten
                                         draggable="false"
                                     />
                                     {/* Overlay Content */}
