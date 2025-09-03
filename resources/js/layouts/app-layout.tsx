@@ -32,7 +32,7 @@ export default ({ children }: AppLayoutProps) => {
 
     const navbarLinks = transformNavbarLinks(siteSettings?.navbar_links) || [];
 
-    const footerLinks = siteSettings?.footer_links;
+    const footerLinks = siteSettings?.footer_links || [];
 
     const footerSocials = siteSettings?.footer_socials || [];
 
