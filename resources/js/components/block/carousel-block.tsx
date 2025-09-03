@@ -3,6 +3,7 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { getRelativePath } from '@/lib/get-relative-path';
 import { type ICarouselBlock } from '@/types/blocks.type';
+import { motion } from 'framer-motion';
 import React from 'react';
 
 const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
@@ -10,7 +11,14 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
 
     return (
         <section className="w-full px-6 py-12 md:px-20">
-            <h2 className="mb-8 text-xl md:text-3xl" dangerouslySetInnerHTML={{ __html: carousel_title ?? '' }} />
+            <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="mb-8 text-xl md:text-3xl"
+                dangerouslySetInnerHTML={{ __html: carousel_title ?? '' }}
+            />
 
             <div className="relative">
                 <Carousel
@@ -20,7 +28,7 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
                     }}
                     className="w-full"
                 >
-                    <CarouselContent className="md:space-x-8 md:w-full">
+                    <CarouselContent className="md:w-full md:space-x-8">
                         {slides.map((slide, index) => (
                             <CarouselItem
                                 key={index}

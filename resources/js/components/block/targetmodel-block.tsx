@@ -1,39 +1,43 @@
 'use client';
 
-import { type ITargetModelBlock } from '@/types/blocks.type';
-import React from 'react';
 import { getRelativePath } from '@/lib/get-relative-path';
+import { type ITargetModelBlock } from '@/types/blocks.type';
+import { motion } from 'framer-motion';
+import React from 'react';
 
 const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
     const { title, items = [] } = data ?? {};
 
     return (
         <section className="relative w-full px-6 py-12 md:px-20">
-            {/* Top Row */}
-            <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-start md:gap-0">
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+                viewport={{ once: true, amount: 0.5 }}
+                className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-start md:gap-0"
+            >
                 <h2 className="text-3xl font-bold leading-snug text-[#1A5DA4] md:w-2/3">{title}</h2>
-            </div>
+            </motion.div>
 
-            {/* Items Grid */}
             <div className="flex flex-1 items-center justify-center">
-                <div className="grid w-full gap-16 md:gap-6 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+                <div className="grid w-full gap-16 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] md:gap-6">
                     {items.map((item, idx) => (
-                        <div key={idx} className="grid h-full text-center [grid-template-rows:auto_3rem_auto_1fr]">
-                            {/* Icon */}
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, scale: 0.80 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, delay: idx * 0.1, ease: 'easeOut' }}
+                            viewport={{ once: true, amount: 0.5 }}
+                            className="grid h-full text-center [grid-template-rows:auto_3rem_auto_1fr]"
+                        >
                             <div className="flex justify-center">
-                                {/* Kalau pakai lucide-react misalnya */}
                                 <img src={getRelativePath(item.icon)} alt="" className="h-18 w-16 md:py-2" />
                             </div>
-
-                            {/* Title */}
-                            <h3 className="flex justify-center text-md items-end md:items-start font-bold text-[#55C406]">{item.subtitle}</h3>
-
-                            {/* Border as alignment baseline */}
+                            <h3 className="text-md flex items-end justify-center font-bold text-[#55C406] md:items-start">{item.subtitle}</h3>
                             <div className="mb-2 mt-3 w-full border-b-2 border-black"></div>
-
-                            {/* Description */}
                             <p className="text-md leading-relaxed text-black">{item.description}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
