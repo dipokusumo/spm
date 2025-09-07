@@ -110,6 +110,10 @@ class SiteSettings extends Page implements Forms\Contracts\HasForms
 
             Section::make('Footer Settings')
                 ->schema([
+                    TextInput::make('footer_anchor')
+                        ->label('Footer Anchor')
+                        ->helperText('This is used for the URL anchor link. Example: your-anchor'),
+
                     Repeater::make('footer_socials')
                         ->label('Social Links')
                         ->schema([

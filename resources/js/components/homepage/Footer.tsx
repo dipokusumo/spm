@@ -7,6 +7,7 @@ type FooterProps = {
     logo: string;
     item: FooterLink[];
     socials: FooterSocial[];
+    anchor?: string;
 };
 
 const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
@@ -18,9 +19,9 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
     tiktok: FaTiktok,
 };
 
-const Footer: React.FC<FooterProps> = ({ logo, item, socials }) => {
+const Footer: React.FC<FooterProps> = ({ logo, item, socials, anchor }) => {
     return (
-        <footer className="flex flex-col items-center justify-center space-y-6 py-12 text-center text-sm text-gray-600" id="contact-us">
+        <footer className="flex flex-col items-center justify-center space-y-6 py-12 text-center text-sm text-gray-600" id={anchor}>
             {/* Logo */}
             <img src={getRelativePath(logo)} alt="SPM Logo" className="h-16 w-auto" />
 

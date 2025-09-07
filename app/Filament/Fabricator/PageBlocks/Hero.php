@@ -16,6 +16,9 @@ class Hero extends PageBlock
         return Block::make('hero')
             ->schema([
                 TextInput::make('title')->label('Title')->required(),
+                TextInput::make('section_anchor')
+                    ->label('Section Anchor')
+                    ->helperText('This is used for the URL anchor link. Example: your-anchor'),
                 Textarea::make('subtitle')->label('Subtitle'),
                 Textarea::make('cta_text')->label('Call to Action Text'),
                 TextInput::make('cta_url')->label('Call to Action URL'),

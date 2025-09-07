@@ -7,10 +7,10 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 const ProductServiceBlock: React.FC<IProductServiceBlock> = ({ data }) => {
-    const { title, products_services = [] } = data ?? {};
+    const { title, section_anchor, products_services = [] } = data ?? {};
 
     return (
-        <section className="w-full px-6 py-12 md:px-20" id="product-service">
+        <section className="w-full px-6 py-12 md:px-20" id={section_anchor}>
             {title && (
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}

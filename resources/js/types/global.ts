@@ -23,6 +23,7 @@ export interface FooterSocial {
 
 export interface ISiteSettings {
     id: number;
+    footer_anchor?: string;
     footer_links: FooterLink[];
     footer_socials: FooterSocial[];
     navbar_logo: string;

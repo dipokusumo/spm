@@ -3,7 +3,6 @@ import type { IBlock } from '@/types/blocks.type';
 // Static imports for all blocks
 
 import HeroBlock from './hero-block';
-import HeroDivisionBlock from './hero-division-block';
 import SectionWithTitleBlock from './sectionparagraph-block';
 import ImageMarqueeBlock from './imagemarquee-block';
 import SeparatorBlock from './separator-block';
@@ -20,7 +19,6 @@ import ProductServiceBlock from './productservice-block';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const components: Record<string, React.ComponentType<any>> = {
     hero: HeroBlock,
-    heroDivision: HeroDivisionBlock,
     'section-paragraph': SectionWithTitleBlock,
     'collage-image': CollageImageBlock,
     'image-marquee': ImageMarqueeBlock,

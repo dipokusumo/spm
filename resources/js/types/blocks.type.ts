@@ -6,6 +6,7 @@ export interface IBlock {
 export interface IHeroBlock {
     data?: {
         title?: string;
+        section_anchor?: string;
         subtitle?: string;
         cta_text?: string;
         cta_url?: string;
@@ -49,6 +50,7 @@ export interface ICollageImageBlock {
 export interface IBusinessModelBlock {
     data?: {
         title?: string;
+        section_anchor?: string;
         upper_paragraph?: string;
         lower_paragraph?: string;
         items?: { subtitle?: string; description?: string }[];
@@ -59,6 +61,7 @@ export interface IBusinessModelBlock {
 export interface ITargetModelBlock {
     data?: {
         title?: string;
+        section_anchor?: string;
         items?: { subtitle?: string; icon: string; description?: string }[];
     };
 }
@@ -66,6 +69,7 @@ export interface ITargetModelBlock {
 export interface ICarouselBlock {
     data: {
         carousel_title: string;
+        section_anchor?: string;
         slides?: {
             background_url: string;
             slide_title?: string;
@@ -77,6 +81,7 @@ export interface ICarouselBlock {
 export interface IProductServiceBlock {
     data: {
         title: string;
+        section_anchor?: string;
         products_services: {
             image: string;
             name: string;

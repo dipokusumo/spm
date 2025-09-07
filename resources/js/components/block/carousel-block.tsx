@@ -1,16 +1,45 @@
 'use client';
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { getRelativePath } from '@/lib/get-relative-path';
+import { Carousel, CarouselContent, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { useIsDesktop } from '@/hooks/use-desktop';
 import { type ICarouselBlock } from '@/types/blocks.type';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useState } from 'react';
+import CarouselSlide from '../component-block/carousel-slide';
+
+const MAX_HEIGHTS: Record<string, string> = {
+    base: '20vh',
+    md: '18vh',
+    lg: '50vh',
+    xl: '60vh',
+};
+
+function useBreakpointValue(values: Record<string, string>) {
+    const [value, setValue] = useState(values.base);
+
+    React.useEffect(() => {
+        function update() {
+            const width = window.innerWidth;
+            if (width >= 1280) setValue(values.xl ?? values.lg ?? values.md ?? values.base);
+            else if (width >= 1024) setValue(values.lg ?? values.md ?? values.base);
+            else if (width >= 768) setValue(values.md ?? values.base);
+            else setValue(values.base);
+        }
+        update();
+        window.addEventListener('resize', update);
+        return () => window.removeEventListener('resize', update);
+    }, [values]);
+
+    return value;
+}
 
 const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
-    const { carousel_title, slides = [] } = data || {};
+    const { carousel_title, section_anchor, slides = [] } = data || {};
+    const isDesktop = useIsDesktop();
+    const maxHeight = useBreakpointValue(MAX_HEIGHTS);
 
     return (
-        <section className="w-full px-6 py-12 md:px-20">
+        <section className="w-full px-6 py-12 md:px-20" id={section_anchor}>
             <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -29,26 +58,8 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
                     className="w-full"
                 >
                     <CarouselContent className="md:w-full md:space-x-8">
-                        {slides.map((slide, index) => (
-                            <CarouselItem
-                                key={index}
-                                className="pb-2 md:basis-[45%]" // tampilkan next card sedikit
-                            >
-                                <div className="relative flex flex-col overflow-hidden rounded-2xl shadow-[6px_6px_15px_rgba(0,0,0,0.15)]">
-                                    {/* Image */}
-                                    <img
-                                        src={getRelativePath(slide.background_url)}
-                                        alt={slide.slide_title}
-                                        className="h-full w-full lg:h-[500px] lg:w-auto" // ratio konsisten
-                                        draggable="false"
-                                    />
-                                    {/* Overlay Content */}
-                                    <div className="absolute bottom-0 w-full bg-gradient-to-t from-white/90 to-white/50 p-4 md:p-6">
-                                        <h3 className="text-md font-bold text-[#1A5DA4]">{slide.slide_title}</h3>
-                                        <p className="text-md mt-2">{slide.slide_description}</p>
-                                    </div>
-                                </div>
-                            </CarouselItem>
+                        {slides.map((slides, index) => (
+                            <CarouselSlide key={index} slides={slides} isDesktop={isDesktop} maxHeight={maxHeight} />
                         ))}
                     </CarouselContent>
 

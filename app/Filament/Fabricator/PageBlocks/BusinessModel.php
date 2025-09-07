@@ -20,6 +20,10 @@ class BusinessModel extends PageBlock
                     ->label('Title')
                     ->required(),
 
+                TextInput::make('section_anchor')
+                    ->label('Section Anchor')
+                    ->helperText('This is used for the URL anchor link. Example: your-anchor'),
+
                 Textarea::make('upper_paragraph')
                     ->label('Upper Paragraph')
                     ->rows(2),

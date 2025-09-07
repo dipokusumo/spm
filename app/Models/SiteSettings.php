@@ -15,6 +15,7 @@ class SiteSettings extends Model implements HasMedia
         'footer_links',
         'navbar_logo',
         'navbar_links',
+        'footer_anchor',
     ];
 
     protected $casts = [

@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
-    const { title, upper_paragraph, lower_paragraph, items = [], background_url } = data ?? {};
+    const { title, section_anchor, upper_paragraph, lower_paragraph, items = [], background_url } = data ?? {};
 
     const background = background_url ?? '';
 
     return (
-        <section className="relative flex overflow-hidden" id="about-us">
+        <section className="relative flex overflow-hidden" id={section_anchor}>
             <img src={getRelativePath(background)} alt="Background" className="absolute inset-0 z-0 h-full w-full object-cover" draggable="false" />
 
             <div className="relative z-10 flex w-full flex-col px-6 py-12 md:px-20">

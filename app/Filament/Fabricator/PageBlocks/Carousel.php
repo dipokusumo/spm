@@ -32,6 +32,10 @@ class Carousel extends PageBlock
                         'redo',
                     ]),
 
+                TextInput::make('section_anchor')
+                    ->label('Section Anchor')
+                    ->helperText('This is used for the URL anchor link. Example: your-anchor'),
+
                 Repeater::make('slides')
                     ->label('Slides')
                     ->schema([

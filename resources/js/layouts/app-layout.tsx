@@ -42,7 +42,7 @@ export default ({ children }: AppLayoutProps) => {
                 <Navigation logo={siteSettings?.navbar_logo} item={navbarLinks} />
                 {children}
                 <Separator className='bg-black' />
-                <Footer logo={siteSettings?.navbar_logo} item={footerLinks} socials={footerSocials} />
+                <Footer logo={siteSettings?.navbar_logo} item={footerLinks} socials={footerSocials} anchor={siteSettings?.footer_anchor} />
             </div>
 
             <Toaster />

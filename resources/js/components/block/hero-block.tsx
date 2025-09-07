@@ -11,13 +11,13 @@ const isVideo = (url: string | undefined): boolean => {
 };
 
 const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
-    const { title, subtitle, background_url } = data ?? {};
+    const { title, subtitle, background_url, section_anchor } = data ?? {};
     const background = background_url ?? '';
 
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <section className="relative flex h-screen items-center justify-center overflow-hidden">
+        <section className="relative flex h-screen items-center justify-center overflow-hidden" id={section_anchor}>
             {/* Background */}
             {isVideo(background) ? (
                 <video

@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
-    const { title, items = [] } = data ?? {};
+    const { title, section_anchor, items = [] } = data ?? {};
 
     return (
-        <section className="relative w-full px-6 py-12 md:px-20">
+        <section className="relative w-full px-6 py-12 md:px-20" id={section_anchor}>
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
