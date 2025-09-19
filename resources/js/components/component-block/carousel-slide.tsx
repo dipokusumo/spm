@@ -72,7 +72,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ slides, isDesktop, maxHei
                                 }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                className="overflow-y-auto xl:overflow-hidden"
+                                className="overflow-y-auto lg:overflow-hidden"
                             >
                                 <p
                                     ref={contentRef}
