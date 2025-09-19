@@ -21,7 +21,7 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
             </motion.div>
 
             <div className="flex flex-1 items-center justify-center">
-                <div className="grid w-full gap-16 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] md:gap-6">
+                <div className="grid w-full gap-16 lg:auto-cols-fr lg:grid-flow-col md:gap-12 lg:gap-6">
                     {items.map((item, idx) => (
                         <motion.div
                             key={idx}
@@ -29,12 +29,12 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: idx * 0.1, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.5 }}
-                            className="grid h-full text-center [grid-template-rows:auto_3rem_auto_1fr]"
+                            className="flex w-full flex-col items-center text-center"
                         >
                             <div className="flex justify-center">
                                 <img src={getRelativePath(item.icon)} alt="" className="h-18 w-16 md:py-2" />
                             </div>
-                            <h3 className="text-md flex items-end justify-center font-bold text-[#55C406] md:items-start">{item.subtitle}</h3>
+                            <h3 className="text-md min-h-[48px] flex items-end justify-center font-bold text-[#55C406] md:items-center">{item.subtitle}</h3>
                             <div className="mb-2 mt-3 w-full border-b-2 border-black"></div>
                             <p className="text-md leading-relaxed text-black">{item.description}</p>
                         </motion.div>

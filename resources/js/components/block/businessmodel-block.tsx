@@ -27,7 +27,7 @@ const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
                 </motion.div>
 
                 <div className="flex items-center justify-center md:py-24">
-                    <div className="grid w-full place-items-stretch gap-6 [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+                    <div className="grid w-full gap-8 md:auto-cols-fr md:grid-flow-col md:gap-6">
                         {items.map((item, idx) => (
                             <motion.div
                                 key={idx}
@@ -37,7 +37,7 @@ const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
                                 viewport={{ once: true, amount: 0.5 }}
                                 className="flex w-full flex-col items-center text-center"
                             >
-                                <h3 className="text-md font-bold text-[#1A5DA4]">{item.subtitle}</h3>
+                                <h3 className="text-md font-bold text-[#1A5DA4] min-h-[48px] flex items-end md:items-center justify-center">{item.subtitle}</h3>
                                 <div className="mb-1 mt-2 w-full border-b-2 border-black"></div>
                                 <p className="text-md leading-relaxed text-black">{item.description}</p>
                             </motion.div>
