@@ -10,7 +10,7 @@ import CarouselSlide from '../component-block/carousel-slide';
 const MAX_HEIGHTS: Record<string, string> = {
     base: '20vh',
     md: '18vh',
-    lg: '50vh',
+    lg: '28vh',
     xl: '60vh',
 };
 
@@ -39,7 +39,7 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
     const maxHeight = useBreakpointValue(MAX_HEIGHTS);
 
     return (
-        <section className="w-full px-6 py-12 md:px-20" id={section_anchor}>
+        <section className="w-full px-6 py-12 md:px-8 lg:px-12 xl:px-20" id={section_anchor}>
             <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

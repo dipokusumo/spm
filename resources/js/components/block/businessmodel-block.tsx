@@ -14,7 +14,7 @@ const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
         <section className="relative flex overflow-hidden" id={section_anchor}>
             <img src={getRelativePath(background)} alt="Background" className="absolute inset-0 z-0 h-full w-full object-cover" draggable="false" />
 
-            <div className="relative z-10 flex w-full flex-col px-6 py-12 md:px-20">
+            <div className="relative z-10 flex w-full flex-col px-6 py-12 md:px-8 lg:px-12 xl:px-20">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}

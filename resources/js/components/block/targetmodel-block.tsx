@@ -9,7 +9,7 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
     const { title, section_anchor, items = [] } = data ?? {};
 
     return (
-        <section className="relative w-full px-6 py-12 md:px-20" id={section_anchor}>
+        <section className="relative w-full px-6 py-12 md:px-8 lg:px-12 xl:px-20" id={section_anchor}>
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -29,14 +29,16 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: idx * 0.1, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.5 }}
-                            className="flex w-full flex-col items-center text-center"
+                            className="flex w-full flex-col md:flex-row lg:flex-col md:gap-6 lg:gap-0 items-center text-center"
                         >
                             <div className="flex justify-center">
-                                <img src={getRelativePath(item.icon)} alt="" className="h-18 w-16 md:py-2" />
+                                <img src={getRelativePath(item.icon)} alt="" className="h-18 w-16 py-2" />
                             </div>
-                            <h3 className="text-md min-h-[48px] flex items-end justify-center font-bold text-[#55C406] md:items-center">{item.subtitle}</h3>
+                            <div className="w-full">
+                            <h3 className="text-md lg:min-h-[48px] flex items-end justify-center font-bold text-[#55C406] lg:items-center">{item.subtitle}</h3>
                             <div className="mb-2 mt-3 w-full border-b-2 border-black"></div>
                             <p className="text-md leading-relaxed text-black">{item.description}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </div>

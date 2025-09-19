@@ -10,7 +10,7 @@ const ProductServiceBlock: React.FC<IProductServiceBlock> = ({ data }) => {
     const { title, section_anchor, products_services = [] } = data ?? {};
 
     return (
-        <section className="w-full px-6 py-12 md:px-20" id={section_anchor}>
+        <section className="w-full px-6 py-12 md:px-8 lg:px-12 xl:px-20" id={section_anchor}>
             {title && (
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
@@ -35,12 +35,12 @@ const ProductServiceBlock: React.FC<IProductServiceBlock> = ({ data }) => {
                                 className="mx-auto flex h-full flex-col items-center gap-8 rounded-2xl bg-white p-4 shadow-[6px_6px_15px_rgba(0,0,0,0.15)] lg:flex-row lg:p-6"
                             >
                                 {/* Gambar Utama */}
-                                <div className="flex justify-center md:w-1/4">
+                                <div className="flex justify-center lg:w-1/4">
                                     <img src={getRelativePath(ps.image)} alt={ps.name} className="h-72 object-contain lg:h-[500px]" />
                                 </div>
 
                                 {/* Konten */}
-                                <div className="relative md:w-3/4">
+                                <div className="relative lg:w-3/4">
                                     {ps.logo && (
                                         <div className="absolute right-0 top-0 hidden md:block">
                                             <img src={getRelativePath(ps.logo)} alt={`${ps.name} Logo`} className="h-14 object-contain" />

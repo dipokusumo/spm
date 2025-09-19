@@ -32,7 +32,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ slides, isDesktop, maxHei
     }, [slides.slide_description]);
 
     return (
-        <CarouselItem className="pb-2 md:basis-[45%]">
+        <CarouselItem className="pb-2 md:basis-[41%] lg:basis-[43%] xl:basis-[45%]">
             <div
                 className="group relative flex flex-col overflow-hidden rounded-2xl shadow-[6px_6px_15px_rgba(0,0,0,0.15)]"
                 {...(isDesktop && isOverflowing
@@ -72,7 +72,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ slides, isDesktop, maxHei
                                 }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                className="overflow-y-auto lg:overflow-hidden"
+                                className="overflow-y-auto xl:overflow-hidden"
                             >
                                 <p
                                     ref={contentRef}
@@ -92,7 +92,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ slides, isDesktop, maxHei
                         {isOverflowing && (
                             <button
                                 onClick={() => setIsExpanded(!isExpanded)}
-                                className="relative z-10 mt-3 inline-flex items-center gap-2 rounded-lg bg-black/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm hover:bg-black/45 xl:hidden"
+                                className="relative z-10 mt-3 inline-flex items-center gap-2 rounded-lg bg-black/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm hover:bg-black/45 lg:hidden"
                                 aria-expanded={isExpanded}
                             >
                                 {isExpanded ? 'Show less' : 'Learn more'}

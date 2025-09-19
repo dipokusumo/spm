@@ -41,7 +41,7 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
             <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
             {/* Content */}
-            <div className="relative z-10 flex h-full w-full flex-col justify-end px-4 pb-10 sm:px-6 md:px-20 md:pb-12">
+            <div className="relative z-10 flex h-full w-full flex-col justify-end px-6 pb-10 md:px-8 md:pb-12 lg:px-12 xl:px-20">
                 <div className="grid grid-cols-1 items-end gap-4 lg:grid-cols-2 lg:gap-0">
                     {/* Left: Title */}
                     <motion.h1
@@ -49,7 +49,7 @@ const HeroBlock: React.FC<IHeroBlock> = ({ data }) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: 'easeOut' }}
                         viewport={{ once: true, amount: 0.5 }}
-                        className="md:cols-span-1 text-3xl font-bold leading-snug text-white drop-shadow-lg"
+                        className="md:cols-span-1 text-3xl lg:text-4xl font-bold leading-snug text-white drop-shadow-lg"
                     >
                         {title}
                     </motion.h1>
