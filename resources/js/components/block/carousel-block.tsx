@@ -57,7 +57,7 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
                     }}
                     className="w-full"
                 >
-                    <CarouselContent className="md:w-full md:space-x-8">
+                    <CarouselContent className="md:w-full md:space-x-2 md:px-2">
                         {slides.map((slides, index) => (
                             <CarouselSlide key={index} slides={slides} isDesktop={isDesktop} maxHeight={maxHeight} />
                         ))}

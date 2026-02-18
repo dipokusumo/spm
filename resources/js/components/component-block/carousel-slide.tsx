@@ -32,7 +32,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ slides, isDesktop, maxHei
     }, [slides.slide_description]);
 
     return (
-        <CarouselItem className="pb-2 md:basis-[41%] lg:basis-[43%] xl:basis-[45%]">
+        <CarouselItem className="pb-2 md:basis-[33.3%]">
             <div
                 className="group relative flex flex-col overflow-hidden rounded-2xl shadow-[6px_6px_15px_rgba(0,0,0,0.15)]"
                 {...(isDesktop && isOverflowing
@@ -46,7 +46,7 @@ const CarouselSlide: React.FC<CarouselSlideProps> = ({ slides, isDesktop, maxHei
                 <img
                     src={getRelativePath(slides.background_url)}
                     alt={slides.slide_title}
-                    className="h-full w-full object-cover lg:h-[500px] lg:w-auto"
+                    className="h-full w-full object-cover lg:h-[450px] lg:w-auto"
                     draggable="false"
                 />
 
