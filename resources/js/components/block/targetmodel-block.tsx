@@ -15,7 +15,7 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: 'easeOut' }}
                 viewport={{ once: true, amount: 0.5 }}
-                className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-start md:gap-0"
+                className="mb-12 flex flex-col justify-between md:flex-row md:items-start"
             >
                 <h2 className="text-3xl font-bold leading-snug text-[#1A5DA4] md:w-2/3">{title}</h2>
             </motion.div>
@@ -32,7 +32,7 @@ const TargetModelBlock: React.FC<ITargetModelBlock> = ({ data }) => {
                             className="flex w-full flex-col md:flex-row lg:flex-col md:gap-6 lg:gap-0 items-center text-center"
                         >
                             <div className="flex justify-center">
-                                <img src={getRelativePath(item.icon)} alt="" className="h-18 w-16 py-2" />
+                                <img src={getRelativePath(item.icon)} alt={item.subtitle} className="w-24 py-2" />
                             </div>
                             <div className="w-full">
                             <h3 className="text-md lg:min-h-[48px] flex items-end justify-center font-bold text-[#55C406] lg:items-center">{item.subtitle}</h3>

@@ -45,7 +45,7 @@ const CarouselBlock: React.FC<ICarouselBlock> = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: 'easeOut' }}
                 viewport={{ once: true, amount: 0.5 }}
-                className="mb-8 text-xl md:text-3xl"
+                className="mb-12 text-3xl"
                 dangerouslySetInnerHTML={{ __html: carousel_title ?? '' }}
             />
 

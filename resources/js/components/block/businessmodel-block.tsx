@@ -14,15 +14,17 @@ const BusinessModelBlock: React.FC<IBusinessModelBlock> = ({ data }) => {
         <section className="relative flex overflow-hidden" id={section_anchor}>
             <img src={getRelativePath(background)} alt="Background" className="absolute inset-0 z-0 h-full w-full object-cover" draggable="false" />
 
-            <div className="relative z-10 flex w-full flex-col px-6 py-12 md:px-8 lg:px-12 xl:px-20">
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-white via-transparent to-white" />
+
+            <div className="relative z-20 flex w-full flex-col px-6 py-12 md:px-8 lg:px-12 xl:px-20">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, ease: 'easeOut' }}
                     viewport={{ once: true, amount: 0.5 }}
-                    className="mb-12 flex flex-col justify-between gap-4 md:mb-0 md:flex-row md:items-start md:gap-0"
+                    className="mb-12 flex flex-col justify-between gap-8 md:mb-0 md:flex-row md:items-start md:gap-0"
                 >
-                    <h2 className="text-3xl font-bold leading-snug text-black md:w-2/3">{title}</h2>
+                    <h2 className="text-3xl font-bold leading-snug text-[#1A5DA4] md:w-2/3">{title}</h2>
                     {upper_paragraph && <p className="text-md font-medium leading-relaxed text-black md:w-2/3">{upper_paragraph}</p>}
                 </motion.div>
 

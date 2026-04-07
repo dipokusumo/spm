@@ -36,6 +36,8 @@ export interface IWysiwygBlock {
 
 export interface IImageMarqueeBlock {
     data?: {
+        title?: string;
+        section_anchor?: string;
         images?: { image: string }[];
         speed?: number;
     };

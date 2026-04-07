@@ -15,6 +15,12 @@ class ImageMarquee extends PageBlock
     {
         return Block::make('image-marquee')
             ->schema([
+                TextInput::make('title')
+                    ->label('Title')
+                    ->required(),
+                TextInput::make('section_anchor')
+                    ->label('Section Anchor')
+                    ->helperText('This is used for the URL anchor link. Example: your-anchor'),
                 Repeater::make('images')
                     ->label('Images')
                     ->minItems(1)
@@ -31,8 +37,7 @@ class ImageMarquee extends PageBlock
                 TextInput::make('speed')
                     ->label('Scroll Speed (seconds)')
                     ->numeric()
-                    ->minValue(5)
-                    ->maxValue(60)
+                    ->minValue(20)
                     ->default(20)
                     ->required()
                     ->columnSpanFull(),

@@ -14,6 +14,7 @@ use App\Filament\Fabricator\PageBlocks\Hero;
 use App\Filament\Fabricator\PageBlocks\Carousel;
 use App\Filament\Fabricator\PageBlocks\ProductService;
 use App\Filament\Fabricator\PageBlocks\BusinessModel;
+use App\Filament\Fabricator\PageBlocks\ImageMarquee;
 use App\Filament\Fabricator\PageBlocks\TargetMarket;
 use App\Models\Homepage as ModelsHomepage;
 use Filament\Notifications\Notification;
@@ -73,6 +74,7 @@ class Homepage extends Page
                                         Carousel::getBlockSchema(),
                                         BusinessModel::getBlockSchema(),
                                         TargetMarket::getBlockSchema(),
+                                        ImageMarquee::getBlockSchema(),
                                     ]),
                             ]),
                     ]),
