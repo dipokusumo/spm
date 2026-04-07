@@ -3,6 +3,7 @@ import { FooterLink, FooterSocial } from '@/types/global';
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 
+
 type FooterProps = {
     logo: string;
     item: FooterLink[];
