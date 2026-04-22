@@ -3,7 +3,6 @@ import { FooterLink, FooterSocial } from '@/types/global';
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 
-
 type FooterProps = {
     logo: string;
     item: FooterLink[];
@@ -20,6 +19,11 @@ const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
     tiktok: FaTiktok,
 };
 
+function getIcon(name?: string) {
+    if (!name) return null;
+    return iconMap[name.toLowerCase()] ?? null;
+}
+
 const Footer: React.FC<FooterProps> = ({ logo, item, socials, anchor }) => {
     return (
         <footer className="flex flex-col items-center justify-center space-y-6 py-12 text-center text-sm text-gray-600" id={anchor}>
@@ -27,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({ logo, item, socials, anchor }) => {
             <img src={getRelativePath(logo)} alt="SPM Logo" className="w-24" />
 
             {/* Content */}
-            <div className="grid w-full max-w-7xl grid-cols-1 gap-6 md:gap-0 text-gray-700 md:grid-cols-3">
+            <div className="grid w-full max-w-7xl grid-cols-1 gap-6 text-gray-700 md:grid-cols-3 md:gap-0">
                 {/* Left */}
                 <div className="space-y-2">
                     <p>
@@ -41,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ logo, item, socials, anchor }) => {
                 </div>
 
                 {/* Middle */}
-                <div className="space-y-1 md:space-y-2 order-first md:order-none">
+                <div className="order-first space-y-1 md:order-none md:space-y-2">
                     <p>
                         <span className="font-semibold">Email:</span> admin@spm-gas.com
                     </p>
@@ -69,8 +73,10 @@ const Footer: React.FC<FooterProps> = ({ logo, item, socials, anchor }) => {
             {socials.length > 0 && (
                 <div className="flex space-x-4">
                     {socials.map((s, idx) => {
-                        const Icon = iconMap[s.icon.toLowerCase()];
-                        if (!Icon) return null;
+                        const Icon = getIcon(s.icon);
+
+                        if (!Icon || !s.url) return null;
+
                         return (
                             <a key={idx} href={s.url} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#1A5DA4]">
                                 <Icon size={24} />
@@ -81,7 +87,7 @@ const Footer: React.FC<FooterProps> = ({ logo, item, socials, anchor }) => {
             )}
 
             {/* Links */}
-            {item.length > 0 && (
+            {item && item.length > 0 && (
                 <div className="flex flex-wrap items-center justify-center space-x-2 text-xs text-gray-500">
                     {item.map((item, idx) => (
                         <a key={idx} href={item.url} className="hover:underline">

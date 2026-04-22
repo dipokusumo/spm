@@ -116,8 +116,21 @@
 /* Custom utilities */
 /* Custom utility classes */
 @layer utilities {
+    .bg-popover {
+        background-color: var(--popover);
+    }
+    .text-popover-foreground {
+        color: var(--popover-foreground);
+    }
     .bg-background {
         background-color: var(--background);
+    }
+
+    .bg-accent {
+        background-color: var(--accent);
+    }
+    .text-accent-foreground {
+        color: var(--accent-foreground);
     }
 
     .text-foreground {

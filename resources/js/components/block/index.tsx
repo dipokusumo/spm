@@ -2,16 +2,17 @@ import type { IBlock } from '@/types/blocks.type';
 
 // Static imports for all blocks
 
-import HeroBlock from './hero-block';
-import SectionWithTitleBlock from './sectionparagraph-block';
-import ImageMarqueeBlock from './imagemarquee-block';
-import SeparatorBlock from './separator-block';
-import WysiwygBlock from './wyswyg-block';
-import CollageImageBlock from './imagecollage-block';
 import BusinessModelBlock from './businessmodel-block';
-import TargetModelBlock from './targetmodel-block';
+import CalculatorBlock from './calculator-block';
 import CarouselBlock from './carousel-block';
+import HeroBlock from './hero-block';
+import CollageImageBlock from './imagecollage-block';
+import ImageMarqueeBlock from './imagemarquee-block';
 import ProductServiceBlock from './productservice-block';
+import SectionWithTitleBlock from './sectionparagraph-block';
+import SeparatorBlock from './separator-block';
+import TargetModelBlock from './targetmodel-block';
+import WysiwygBlock from './wyswyg-block';
 
 // Add all other blocks here...
 
@@ -27,7 +28,8 @@ const components: Record<string, React.ComponentType<any>> = {
     carousel: CarouselBlock,
     'product-service': ProductServiceBlock,
     'business-model': BusinessModelBlock,
-    'target-market': TargetModelBlock
+    'target-market': TargetModelBlock,
+    calculator: CalculatorBlock,
 
     // Add more as needed...
 };

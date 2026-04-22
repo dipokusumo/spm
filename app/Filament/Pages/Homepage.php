@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Fabricator\PageBlocks\CalculatorBlock;
 use Filament\Pages\Page;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
@@ -75,6 +76,7 @@ class Homepage extends Page
                                         BusinessModel::getBlockSchema(),
                                         TargetMarket::getBlockSchema(),
                                         ImageMarquee::getBlockSchema(),
+                                        CalculatorBlock::getBlockSchema(),
                                     ]),
                             ]),
                     ]),
